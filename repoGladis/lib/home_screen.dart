@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     SafeArea(
       child: Column(
         children: [
-          Title(color: Colors.lightBlue, child: Text('Welcome Page') ),
+          Title(color: Colors.lightBlue, child: const Text('Welcome Page') ),
         ],
       ),
     )

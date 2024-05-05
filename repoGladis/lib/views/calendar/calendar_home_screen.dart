@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});
@@ -24,9 +23,7 @@ class CalendarScreen extends StatelessWidget {
           ],
           initialDisplayDate: DateTime.now(),
           showDatePickerButton: true,
-          monthViewSettings: const MonthViewSettings(
-            showTrailingAndLeadingDates: true,
-          ),
+
 
       ),
       ),

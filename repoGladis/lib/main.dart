@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:repo/home_screen.dart';
-import 'package:repo/views/calendar/calendar_home_screen.dart';
 import 'package:repo/views/calendar/monthly_screen.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:get/get.dart';
 
 
 
 
 Future<void> main() async{
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +25,7 @@ class MyApp extends StatelessWidget {
 
       ),
       // this the first screen that show app when you start the app
-      home: MonthlyScreen(),
+      home: const MonthlyScreen(),
     // this the code use to show floating button on every pages
     builder: (context,child){
         return Scaffold(
@@ -42,14 +39,14 @@ class MyApp extends StatelessWidget {
 
                     },
                     child: Container(
-                      margin: EdgeInsets.fromLTRB(50,0,0,5),
+                      margin: const EdgeInsets.fromLTRB(50,0,0,5),
                       height: 50,
                       width: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.blue,borderRadius: BorderRadius.circular(10)
                       ),
-                      child: Icon(Icons.mic_rounded,color: Colors.white,),
+                      child: const Icon(Icons.mic_rounded,color: Colors.white,),
                     ),
 
 
@@ -60,14 +57,14 @@ class MyApp extends StatelessWidget {
 
                     },
                     child: Container(
-                      margin: EdgeInsets.fromLTRB(0,0,0,5),
+                      margin: const EdgeInsets.fromLTRB(0,0,0,5),
                       height: 50,
                       width: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.blue,borderRadius: BorderRadius.circular(50)
                       ),
-                      child: Icon(Icons.add,color: Colors.white,),
+                      child: const Icon(Icons.add,color: Colors.white,),
                     ),
 
 
@@ -78,7 +75,7 @@ class MyApp extends StatelessWidget {
         );
     },
       // this is where  we add all our app pages
-  getPages: [
+  getPages: const [
 
   ],
 
