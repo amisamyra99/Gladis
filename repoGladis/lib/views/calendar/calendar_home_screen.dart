@@ -21,6 +21,16 @@ class CalendarScreen extends StatelessWidget {
             CalendarView.schedule,
 
           ],
+
+          monthViewSettings: const MonthViewSettings(
+            agendaStyle: AgendaStyle(
+
+            ),
+            showTrailingAndLeadingDates: false,
+            showAgenda: true,
+            agendaViewHeight: 400,
+
+          ),
           initialDisplayDate: DateTime.now(),
           showDatePickerButton: true,
 

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:repo/views/Authentification/widget/custom_scaffold.dart';
+import 'package:repo/views/calendar/calendar_home_screen.dart';
 import 'package:repo/views/calendar/monthly_screen.dart';
 import 'package:get/get.dart';
+import 'package:repo/views/onboarding/intro_screen.dart';
 
 
 
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Gladis Ai',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+
 
       ),
       // this the first screen that show app when you start the app
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
     builder: (context,child){
         return Scaffold(
           body: child,
-              floatingActionButton: Row(
+              /*floatingActionButton: Row(
                 children: [
                   InkWell(
 
@@ -70,7 +74,7 @@ class MyApp extends StatelessWidget {
 
                   )
                 ],
-              ),
+              ),*/
 
         );
     },
