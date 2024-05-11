@@ -26,6 +26,13 @@ class MonthlyScreen extends StatelessWidget {
         body: SafeArea(
           child: SfCalendar(
             view: CalendarView.month,
+            selectionDecoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(color: Colors.lightBlue, width: 2),
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              shape: BoxShape.rectangle,
+              ),
+            todayHighlightColor: Colors.lightBlue,
       
             showTodayButton: true,
             showDatePickerButton: true,

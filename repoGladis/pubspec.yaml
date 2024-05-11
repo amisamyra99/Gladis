@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_calendar: ^25.1.42
+  syncfusion_flutter_calendar: ^25.2.3
   get: ^4.6.6
   google_fonts: ^6.2.1
   flutter_speed_dial: ^7.0.0
