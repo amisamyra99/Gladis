@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class MonthlyScreen extends StatelessWidget {
-  const MonthlyScreen({Key? key}) : super(key: key);
+class MonthlyScreen2 extends StatelessWidget {
+  const MonthlyScreen2({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -134,11 +134,12 @@ class _AppointmentFormState extends State<AppointmentForm> {
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Start Date'),
-                          Text(_startDate?.toString() ?? 'Select Date'),
+                          // Text(_startDate?.toString() ?? 'Select Date'),
+                          // Remove const in Row above if above is uncommented
                         ],
                       ),
                     ),
@@ -166,11 +167,12 @@ class _AppointmentFormState extends State<AppointmentForm> {
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('End Date'),
-                          Text(_endDate?.toString() ?? 'Select Date'),
+                          // Text(_endDate?.toString() ?? 'Select Date'),
+                          // Remove const in Row above if above is uncommented
                         ],
                       ),
                     ),
