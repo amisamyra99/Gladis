@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:repo/views/Authentification/widget/custom_scaffold.dart';
-import 'package:repo/views/calendar/calendar_home_screen.dart';
+import 'package:repo/views/Authentification/login_screen.dart';
+
+import 'package:get/get.dart';
 import 'package:repo/views/calendar/monthly_screen.dart';
 import 'package:repo/views/calendar/monthly_screen2.dart';
-import 'package:get/get.dart';
 import 'package:repo/views/onboarding/intro_screen.dart';
 
 
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
 
     return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
 
       ),
       // this the first screen that show app when you start the app
-      home: const MonthlyScreen(),
+      home: const IntroScreen(),
     // this the code use to show floating button on every pages
     builder: (context,child){
         return Scaffold(

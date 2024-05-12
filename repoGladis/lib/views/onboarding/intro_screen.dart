@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:repo/views/Authentification/login_screen.dart';
+import 'package:repo/views/Authentification/widget/custom_button.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -47,17 +50,11 @@ class IntroScreen extends StatelessWidget {
               Positioned(
                 left: size.width/4,
                 bottom: 50,
-                  child: Container(
-                                  height: 50,
-                                  width: 200,
-                                  decoration: BoxDecoration(
-                                  color: Colors.white,
-                                      borderRadius: BorderRadius.circular(50)
-                                   
+                  child:CustomButtonBig(text: 'Get Started',onPressed: (){
+                    Get.to(const Login());
+                  },borderRadius: 20,color: Colors.white,textColor: Colors.blue)
 
-                                ),
-                    child: Center(child: Text('Get Started',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),)),
-                  )
+
               )
 
             ],
