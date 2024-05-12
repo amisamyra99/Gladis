@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:repo/app_bar.dart';
 import 'package:repo/home_screen.dart';
 import 'package:repo/views/calendar/calendar_home_screen.dart';
 import 'package:repo/views/calendar/monthly_screen.dart';
+import 'package:repo/views/calendar/weekly_screen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:get/get.dart';
-
-
-
 
 Future<void> main() async{
   runApp(MyApp());
@@ -14,8 +13,6 @@ Future<void> main() async{
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
@@ -25,21 +22,21 @@ class MyApp extends StatelessWidget {
       title: 'Gladis Ai',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
+        appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.white), // Set the color of the back arrow to white
+        ),
       ),
       // this the first screen that show app when you start the app
       home: MonthlyScreen(),
     // this the code use to show floating button on every pages
     builder: (context,child){
         return Scaffold(
+          //appBar: MyAppBar(),
           body: child,
               floatingActionButton: Row(
                 children: [
                   InkWell(
-
-
                     onTap: (){
-
                     },
                     child: Container(
                       margin: EdgeInsets.fromLTRB(50,0,0,5),
@@ -51,13 +48,10 @@ class MyApp extends StatelessWidget {
                       ),
                       child: Icon(Icons.mic_rounded,color: Colors.white,),
                     ),
-
-
                   ),
                   SizedBox(width: size.width * 0.60,),
                   InkWell(
                     onTap: (){
-
                     },
                     child: Container(
                       margin: EdgeInsets.fromLTRB(0,0,0,5),
@@ -84,4 +78,6 @@ class MyApp extends StatelessWidget {
 
     );
   }
+
+
 }
