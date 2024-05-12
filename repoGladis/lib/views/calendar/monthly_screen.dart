@@ -61,7 +61,11 @@ class _MonthlyScreenState extends State<CalendarScreen> {
             ),
             dataSource: AppointmentDataSource(_appointments),
             onTap: (details) {
-              if (details.appointments == null) _showAppointmentForm(context, details.date);
+              if (details is CalendarTapDetails && details.targetElement == CalendarElement.header) {
+                // _showAppointmentForm(context, null);
+              } else if (details.appointments == null) {
+                _showAppointmentForm(context, details.date);
+              }
             },
           ),
         ),
