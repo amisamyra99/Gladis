@@ -3,6 +3,8 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:switcher_button/switcher_button.dart';
 
+import '../widgets/app_bar.dart';
+
 class MonthlyScreen2 extends StatelessWidget {
   const MonthlyScreen2({Key? key}) : super(key: key);
   @override
@@ -36,9 +38,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calendar'),
-      ),
+      appBar: MyAppBar(),
       body: SfCalendar(
         view: CalendarView.schedule,
         dataSource: AppointmentDataSource(_appointments),
@@ -144,17 +144,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                )
              ],
            ),
-            SizedBox(height: 10,),
-            TextFormField(
-              controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a title';
-                }
-                return null;
-              },
-            ),
+
             const SizedBox(height: 16),
             Row(
               children: [
