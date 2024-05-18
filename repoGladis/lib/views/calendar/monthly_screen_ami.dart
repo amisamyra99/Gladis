@@ -1,30 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:repo/views/calendar/widgets/appointments_form.dart';
+import 'package:repo/views/calendar/widgets/voiceInputWidget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:repo/models/appointment_customized.dart' as apt;
 
+import '../../services/speech_recognition_service.dart';
+
 
 class MonthlyScreen extends StatelessWidget
 {
-  const MonthlyScreen({Key? key}) : super(key: key);
+  final speechRecognitionService = SpeechRecognitionService();
+
+   MonthlyScreen({Key? key,}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CalendarScreen(),
+      home: CalendarScreen(speechRecognitionService:speechRecognitionService ,),
     );
   }
 }
 class CalendarScreen extends StatefulWidget {
+  final SpeechRecognitionService speechRecognitionService;
+  CalendarScreen({super.key, required this.speechRecognitionService});
   @override
-  _MonthlyScreenState createState() => _MonthlyScreenState();
+  _CalendarScreenState createState() => _CalendarScreenState();
+
 }
 
-class _MonthlyScreenState extends State<CalendarScreen> {
+class _CalendarScreenState extends State<CalendarScreen> {
   //  first create a list of appointments
   List<apt.Appointment> _appointments = [];
-
-
+  String _recognizedText = ""; // To store text from the service
+  @override
+  void initState() {
+    super.initState();
+    // Initialize speech recognition here
+    widget.speechRecognitionService.initialize();
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -71,20 +86,28 @@ class _MonthlyScreenState extends State<CalendarScreen> {
         ),
         floatingActionButton: Row(
           children: [
-            InkWell(
-              onTap: () {},
-              child: Container(
-                margin: const EdgeInsets.fromLTRB(50, 0, 0, 5),
-                height: 50,
-                width: 50,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Icon(Icons.mic_rounded, color: Colors.white),
-              ),
-            ),
+            SizedBox(width: size.width * 0.15),
+           VoiceInputWidget(
+             size: 60,
+    onTap: () {
+    if (widget.speechRecognitionService.isListening)
+    {
+    widget.speechRecognitionService.stopListening();
+    }
+    else
+    {
+    widget.speechRecognitionService.startListening((text)
+    {
+    setState(()
+    {
+    _recognizedText = text;
+
+    }
+    );
+
+    },);}
+    },
+        ),
             // Expanded( // Wrap the SpeedDial widget with Expanded
             //   child: SizedBox(), // Replace this with your SpeedDial widget
             // ),
@@ -110,8 +133,7 @@ class _MonthlyScreenState extends State<CalendarScreen> {
               // ],
               onOpen: () => _showAppointmentForm(context, null),
             )
-          ],
-        ),
+          ],),
       ),
     );
   }

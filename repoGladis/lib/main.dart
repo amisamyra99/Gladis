@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:repo/views/Authentification/login_screen.dart';
-
 import 'package:get/get.dart';
+import 'package:repo/services/speech_recognition_service.dart';
 import 'package:repo/views/calendar/monthly_screen_ami.dart';
-import 'package:repo/views/calendar/monthly_screen2.dart';
-import 'package:repo/views/onboarding/intro_screen.dart';
 
 
 
 
-Future<void> main() async{
+
+Future<void> main() async
+{
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget
+{
 
+  const MyApp({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 
       ),
       // this the first screen that show app when you start the app
-      home: const IntroScreen(),
+      home:   MonthlyScreen(),
     // this the code use to show floating button on every pages
     builder: (context,child){
         return Scaffold(
