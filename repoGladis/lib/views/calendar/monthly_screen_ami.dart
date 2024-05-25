@@ -6,25 +6,27 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:repo/models/appointment_customized.dart' as apt;
 
 import '../../services/speech_recognition_service.dart';
-
+import '../../services/calendar_data_service.dart';
 
 class MonthlyScreen extends StatelessWidget
 {
   final speechRecognitionService = SpeechRecognitionService();
+  final dataService = CalendarDataService();
 
-   MonthlyScreen({Key? key,}) : super(key: key);
+  MonthlyScreen({Key? key,}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CalendarScreen(speechRecognitionService:speechRecognitionService ,),
+      home: CalendarScreen(speechRecognitionService:speechRecognitionService ,dataService:dataService),
     );
   }
 }
 class CalendarScreen extends StatefulWidget {
   final SpeechRecognitionService speechRecognitionService;
-  CalendarScreen({super.key, required this.speechRecognitionService});
+  final CalendarDataService dataService;
+  CalendarScreen({super.key, required this.speechRecognitionService,required this.dataService});
   @override
   _CalendarScreenState createState() => _CalendarScreenState();
 
@@ -39,6 +41,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     super.initState();
     // Initialize speech recognition here
     widget.speechRecognitionService.initialize();
+    _appointments=widget.dataService.getAppointments();
   }
   @override
   Widget build(BuildContext context) {
@@ -93,6 +96,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     if (widget.speechRecognitionService.isListening)
     {
     widget.speechRecognitionService.stopListening();
+    _appointments=widget.dataService.getAppointments();
     }
     else
     {
