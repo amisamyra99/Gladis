@@ -1,7 +1,3 @@
-[submodule "repo"]
-	path = repo
-	url = https://github.com/amisamyra99/Gladis.git
-
 
 [submodule "geminiApi"]
   path = geminiApi
