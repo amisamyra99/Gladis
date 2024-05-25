@@ -2,3 +2,6 @@
 [submodule "geminiApi"]
   path = geminiApi
   url = https://github.com/amisamyra99/Gladis.git
+[submodule "repo"]
+	path = repo
+	url = https://github.com/amisamyra99/Gladis.git
