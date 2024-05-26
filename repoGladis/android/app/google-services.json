@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "995414818926",
+    "project_id": "gladis-ai-1afee",
+    "storage_bucket": "gladis-ai-1afee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995414818926:android:660f66e406b5f21d0f667f",
+        "android_client_info": {
+          "package_name": "com.example.appointment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ1PV4SxDh7NxeVdpnSLbcdCwQNKDK3os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995414818926:android:846a355b3a3bd2180f667f",
+        "android_client_info": {
+          "package_name": "com.example.repo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ1PV4SxDh7NxeVdpnSLbcdCwQNKDK3os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
