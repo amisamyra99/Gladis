@@ -2,6 +2,9 @@ library event_calendar;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:repo/views/Authentification/google_auth.dart';
+import 'package:repo/views/Authentification/microsoft_auth.dart';
+
 part 'appointment.dart';
 
 class MonthlyScreen extends StatelessWidget {
@@ -16,16 +19,16 @@ class MonthlyScreen extends StatelessWidget {
 
 class CalendarScreen extends StatefulWidget {
   @override
-  _MonthlyScreenState createState() => _MonthlyScreenState();
+  _CalendarScreenState createState() => _CalendarScreenState();
 }
 
-class _MonthlyScreenState extends State<CalendarScreen> {
+class _CalendarScreenState extends State<CalendarScreen> {
   List<Appointment> _appointments = [];
+  final isDialOpen = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final isDialOpen = ValueNotifier(false);
     return WillPopScope(
       onWillPop: () async {
         if (isDialOpen.value) {
@@ -56,10 +59,7 @@ class _MonthlyScreenState extends State<CalendarScreen> {
             ),
             dataSource: AppointmentDataSource(_appointments),
             onTap: (details) {
-              if (details is CalendarTapDetails &&
-                  details.targetElement == CalendarElement.header) {
-                // _showAppointmentForm(context, null);
-              } else if (details.appointments == null) {
+              if (details.appointments == null) {
                 _showAppointmentForm(context, details.date);
               }
             },
@@ -90,7 +90,23 @@ class _MonthlyScreenState extends State<CalendarScreen> {
               closeManually: true,
               openCloseDial: isDialOpen,
               curve: Curves.bounceIn,
-              onOpen: () => _showAppointmentForm(context, null),
+              children: [
+                SpeedDialChild(
+                  child: Icon(Icons.calendar_today),
+                  label: 'Google Calendar',
+                  onTap: _fetchGoogleEvents,
+                ),
+                SpeedDialChild(
+                  child: Icon(Icons.calendar_view_day),
+                  label: 'Outlook Calendar',
+                  onTap: _fetchMicrosoftEvents,
+                ),
+                SpeedDialChild(
+                  child: Icon(Icons.calendar_view_day),
+                  label: 'Manual Calendar',
+                  onTap: () => _showAppointmentForm(context, null),
+                ),
+              ],
             )
           ],
         ),
@@ -108,7 +124,56 @@ class _MonthlyScreenState extends State<CalendarScreen> {
       setState(() {
         _appointments.add(form);
       });
-      // Handle form submission
     }
   }
+
+  void _fetchGoogleEvents() async {
+    final googleAuth = GoogleAuth();
+    final account = await googleAuth.signIn();
+
+    if (account != null) {
+      final calendarApi = await googleAuth.getCalendarApi(account);
+      final events = await calendarApi.events.list('primary');
+
+      setState(() {
+        _appointments.addAll(events.items!.map((e) => Appointment(
+          startTime: e.start!.dateTime ?? DateTime.now(),
+          endTime: e.end!.dateTime ?? DateTime.now().add(Duration(hours: 1)),
+          subject: e.summary ?? '',
+          color: Colors.blue,
+        )).toList());
+      });
+    }
+  }
+
+  void _fetchMicrosoftEvents() async {
+    final microsoftAuth = MicrosoftAuth(
+      clientId: 'your-client-id',
+      clientSecret: 'your-client-secret',
+      redirectUrl: 'your-redirect-url',
+    );
+    final oauthClient = await microsoftAuth.signIn();
+    final events = await microsoftAuth.getCalendarEvents(oauthClient);
+
+    setState(() {
+      _appointments.addAll(events.map((e) => Appointment(
+        startTime: DateTime.parse(e['start']['dateTime']),
+        endTime: DateTime.parse(e['end']['dateTime']),
+        subject: e['subject'] ?? '',
+        color: Colors.green,
+      )).toList());
+    });
+  }
 }
+
+// class AppointmentForm extends StatelessWidget {
+//   final DateTime? date;
+//
+//   AppointmentForm({this.date});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     // Implement your appointment form here
+//     return Container();
+//   }
+// }

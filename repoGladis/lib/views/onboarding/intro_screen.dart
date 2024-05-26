@@ -39,9 +39,6 @@ class IntroScreen extends StatelessWidget {
                        ' ensuring optimal time management at your fingertips',style: TextStyle(color: Colors.white,fontSize: 16,),textAlign: TextAlign.center,)
 
                    ],
-
-
-
                 )
 
 
@@ -53,10 +50,7 @@ class IntroScreen extends StatelessWidget {
                   child:CustomButtonBig(text: 'Get Started',onPressed: (){
                     Get.to(const Login());
                   },borderRadius: 20,color: Colors.white,textColor: Colors.blue)
-
-
               )
-
             ],
         
       )),

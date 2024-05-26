@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repo/views/Authentification/login_screen.dart';
+import 'package:repo/views/calendar/monthly_screen_chriz.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -73,7 +74,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
 
         }
         else if(value == "month"){
-          Get.to(Login());
+          Get.to(MonthlyScreen());
         }
       },
     ),

@@ -30,15 +30,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_calendar: ^25.2.3
+  syncfusion_flutter_calendar: ^25.2.4
   get: ^4.6.6
-  google_fonts: ^6.2.1
+  google_fonts: ^4.0.4
   flutter_speed_dial: ^7.0.0
   omni_datetime_picker: ^1.1.0
   firebase_core: ^1.1.0
   cloud_firestore: ^1.0.7
   firebase_core_platform_interface: 4.5.1
   switcher_button: ^0.0.4
+  googleapis_auth: ^1.2.1
+  googleapis: ^10.0.0
+  google_sign_in: ^6.0.0
+  http: ^0.13.0
+  oauth2: ^2.0.0
+  flutter_web_auth: ^0.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
