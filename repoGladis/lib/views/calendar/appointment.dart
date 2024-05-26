@@ -123,9 +123,10 @@ class _AppointmentFormState extends State<AppointmentForm> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               final appointment = Appointment(
-                title: _titleController.text,
+                subject: _titleController.text,
                 startTime: _startDate,
                 endTime: _endDate,
+                color: Colors.cyan,
               );
               Navigator.of(context).pop(appointment);
             }
@@ -138,34 +139,43 @@ class _AppointmentFormState extends State<AppointmentForm> {
 }
 
 class Appointment {
-  final String title;
+  // final String title;
   final DateTime? startTime;
   final DateTime? endTime;
+  final String subject;
+  final Color color;
 
   Appointment({
-    required this.title,
+    // required this.title,
     this.startTime,
     this.endTime,
+    required this.subject,
+    required this.color,
   });
 }
 
 class AppointmentDataSource extends CalendarDataSource {
-  final List<Appointment> appointments;
-
-  AppointmentDataSource(this.appointments);
+  AppointmentDataSource(List<Appointment> source) {
+    appointments = source;
+  }
 
   @override
   DateTime getStartTime(int index) {
-    return appointments[index].startTime ?? DateTime.now();
+    return appointments![index].startTime;
   }
 
   @override
   DateTime getEndTime(int index) {
-    return appointments[index].endTime ?? DateTime.now().add(Duration(hours: 1));
+    return appointments![index].endTime;
   }
 
   @override
   String getSubject(int index) {
-    return appointments[index].title;
+    return appointments![index].subject;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].color;
   }
 }
