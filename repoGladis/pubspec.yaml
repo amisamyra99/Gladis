@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^1.0.7
   firebase_core_platform_interface: 4.5.1
   switcher_button: ^0.0.4
+  font_awesome_flutter: ^10.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
