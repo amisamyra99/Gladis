@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repo/services/speech_recognition_service.dart';
 import 'package:repo/views/calendar/monthly_screen_ami.dart';
+import 'package:repo/views/onboarding/intro_screen.dart';
 
 
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget
 
       ),
       // this the first screen that show app when you start the app
-      home:   MonthlyScreen(),
+      home:   const IntroScreen(),
     // this the code use to show floating button on every pages
     builder: (context,child){
         return Scaffold(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import 'package:repo/models/appointment_customized.dart';
@@ -79,66 +80,95 @@ class SpeechRecognitionService {
     if (apiResponse != null) {
       String? userIntent = apiResponse['user_intent'];
 
-      DateFormat format = DateFormat("MM/dd/yyyy");
-
-      String dateFromApi = apiResponseEntity!['date'] ?? '';
-      DateTime? date= format.parse(dateFromApi);
-      String title = apiResponseEntity['reason'] ??"Event";
-      //DateTime? startTime= (apiResponseEntity?['from'].isNotEmpty) ? DateTime.parse(dateFromApi);
-      //DateTime? endTime = apiResponseEntity?['to'];
-     // String? location= apiResponseEntity?['date'];
 
 
-
-      print('***********************');
-      print(userIntent);
       // 2. Handle intents
-      if (userIntent == 'create_appointment') {
+        switch (userIntent) {
+          case 'create_appointment':
+            DateFormat format = DateFormat("MM/dd/yyyy");
+            DateFormat format2 = DateFormat("MM/dd/yyyy HH:mm");
 
-        if (title!=null){
-          print(title);
-          _dataService.createAppointment(Appointment(title:title,startTime:date));
-          _speak('so your apointement has been created for');
+            String dateFromApi = apiResponseEntity!['date'] ?? '';
+            String startTimeFromApi = apiResponseEntity['from'] ?? '';
+            String endTimeFromApi = apiResponseEntity['to'] ?? '';
+            DateTime? date= format.parse(dateFromApi);
+            String title = apiResponseEntity['reason'] ??"Event";
+
+            DateTime? startTime= format2.parse(dateFromApi+' '+startTimeFromApi);
+            DateTime? endTime = format2.parse(dateFromApi+' '+endTimeFromApi);
+            // String? location= apiResponseEntity?['date'];
+            if (title != null) {
+              print(title);
+
+              //process API input and ask futher question
+              _dataService.createAppointment(
+                  Appointment(title: title, startTime: startTime,endTime: endTime));
+              _speak('so your apointement has been created for');
+            }
+            else {
+              print('User wants to create an appointment');
+              _speak(
+                  'What is the date, time and the reason for the appointment?');
+            }
+
+            break;
+          case 'modify_appointment':
+            print('User wants to modify an appointment');
+            _speak('What appointment you want to modify ?');
+
+            break;
+          case 'delete_appointment':
+            print('User wants to delete an appointment');
+            _speak('What appointment you want to delete?');
+            break;
+          case 'check_meeting':
+            print('User wants to check meetings');
+            _speak('What day you want to check ?');
+
+            break;
+
+          case 'query':
+            break;
+
+          case 'unknown':
+            _speak("you have to configurate a command fro that ");
+            print('Unknown command: $command');
+            break;
+
+          default:
+            _speak('Sorry, I didn\'t understand. Can you try again?');
+            break;
         }
-        else {
-          print('User wants to create an appointment');
-          _speak('What is the date, time and the reason for the appointment?');
-        }
-        // Initiate appointment creation flow
-      } else if (userIntent == 'delete_appointment') {
-        print('User wants to delete an appointment');
-        _speak('What appointment you want to delete?');
-        // Initiate appointment deletion flow
-      } else if (userIntent == 'modify_appointment') {
-        print('User wants to modify an appointment');
-        _speak('What appointment you want to modify ?');
-        // Initiate appointment modification flow
-      } else if (userIntent == 'check_meeting') {
-        print('User wants to check meetings');
-        _speak('What day you want to check ?');
-      }
-      else if (command.toLowerCase().contains('login')) {
-        _speak("I am opening the login page");
-        Get.to(const Login());
-        print('User asked for today\'s events');
-        // Get today's events from the calendar data service
-      } else if (command.toLowerCase().contains('tomorrow')) {
-        print('User asked for tomorrow\'s events');
-        _speak("I do not have information for tomorow event");
-        // Get tomorrow's events from the calendar data service
-      }
-      else if (command.toLowerCase().contains('create appointment')) {
-        print('User wants to create an appointment');
-        // Initiate appointment creation flow
-      }
-      else {
-        _speak("you have to configurate a command fro that ");
-        print('Unknown command: $command');
-      }
     }
     else {
-      _speak('Sorry, I didn\'t understand. Can you try again?');
+      _speak('Please try to check your internet connexion for ?');
       print('API request failed or returned null');
     }
+
   }
+}
+void  processApiOutput(String title, String  starTime, String endTime,String location)
+{
+// specific word like
+// tomorow , in two number of days , //weedays
+
+//time
+//pm or am
+
+//title confirmation
+//before create appointment
+
+// possible to create reminder event
+
+// actual date issue
+//for exemple if no date specify consider today and the actual year more importantly
+}
+
+
+void processQueryApi(String title,String  starTime, String endTime,String location,String category)
+{
+// what==> Category or title  and when ?
+// be general an only focus on date and \\ list of meetings \\ check avalaibility\\
+
+
 }

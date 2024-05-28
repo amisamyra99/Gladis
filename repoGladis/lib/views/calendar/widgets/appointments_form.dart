@@ -134,6 +134,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                 title: _titleController.text,
                 startTime: _startDate,
                 endTime: _endDate,
+
               );
               Navigator.of(context).pop(appointment);
             }
