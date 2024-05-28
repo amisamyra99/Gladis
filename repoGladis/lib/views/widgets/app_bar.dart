@@ -2,9 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repo/views/Authentification/login_screen.dart';
+import 'package:repo/views/calendar/weekly_screen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:repo/views/widgets/sync_calender_dialog.dart';
+
+import '../calendar/monthly_screen.dart';
+import '../calendar/schedule_screen.dart';
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
@@ -19,9 +23,11 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
+    const RoundedRectangleBorder roundedRectangleBorder = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0)));
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        shape: roundedRectangleBorder,
+        title: const Text(
           "GladisAI",
           style: TextStyle(color: Colors.white),
         ),
@@ -29,12 +35,13 @@ class _MyAppBarState extends State<MyAppBar> {
         elevation: 4,
         backgroundColor: Colors.blue,
         leading: PopupMenuButton(
+          color: Colors.white,
           icon: Icon(
             Icons.more_vert,
             color: Colors.white,
           ),
           itemBuilder: (context) => [
-            PopupMenuItem(
+            const PopupMenuItem(
               child: Row(
                 children: [
                   Icon(Icons.calendar_view_day, color: Colors.black,),
@@ -44,7 +51,7 @@ class _MyAppBarState extends State<MyAppBar> {
               ),
               value: "day",
             ),
-            PopupMenuItem(
+            const PopupMenuItem(
               child: Row(
                 children: [
                   Icon(Icons.calendar_view_week, color: Colors.black,),
@@ -54,7 +61,7 @@ class _MyAppBarState extends State<MyAppBar> {
               ),
               value: "week",
             ),
-            PopupMenuItem(
+            const PopupMenuItem(
               child: Row(
                 children: [
                   Icon(Icons.calendar_view_month, color: Colors.black,),
@@ -64,7 +71,7 @@ class _MyAppBarState extends State<MyAppBar> {
               ),
               value: "month",
             ),
-            PopupMenuItem(
+            const PopupMenuItem(
               child: Row(
                 children: [
                   Icon(Icons.schedule, color: Colors.black,),
@@ -76,12 +83,12 @@ class _MyAppBarState extends State<MyAppBar> {
             ),
           ],
           onSelected: (String value) {
-            if (value == "day") {
-              Get.to(Login());
+            if (value == "schedule") {
+              Get.to(ScheduleScreen());
             } else if (value == "week") {
-              Get.to(Login());
+             Get.to(MonthlyScreen());
             } else if (value == "month") {
-              Get.to(Login());
+              Get.to(MonthlyScreen2());
             }
           },
         ),
@@ -150,7 +157,7 @@ class _MyAppBarState extends State<MyAppBar> {
           value: 'Logout',
           child: Row(
             children: [
-              Icon(Icons.logout, color: Colors.red,),
+              Icon(Icons.logout_rounded, color: Colors.red,),
               SizedBox(width: 8),
               Text("Logout")
             ],

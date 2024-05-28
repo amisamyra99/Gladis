@@ -4,9 +4,9 @@ import 'package:repo/views/Authentification/registration.dart';
 import 'package:repo/views/Authentification/widget/custom_button.dart';
 import 'package:repo/views/Authentification/widget/custom_scaffold.dart';
 import 'package:repo/views/Authentification/widget/custom_textfield.dart';
-import 'package:repo/views/calendar/monthly_screen_ami.dart';
+import 'package:repo/views/calendar/weekly_screen.dart';
 
-import '../calendar/monthly_screen2.dart';
+import '../calendar/monthly_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

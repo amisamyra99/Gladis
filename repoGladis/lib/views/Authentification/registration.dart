@@ -44,7 +44,7 @@ class _RegistrationState extends State<Registration> {
               CustomTextField(controller: _emailController, hintText: 'email',prefixIcon: Icon(Icons.email_outlined),),
               const SizedBox(height: 10,),
 
-              CustomTextField(controller: _passController, hintText: 'password',prefixIcon: Icon(Icons.password),),
+              CustomTextField(controller: _passController, hintText: 'password', isObscureText: true,prefixIcon: Icon(Icons.password),),
               const SizedBox(height: 10,),
 
               CustomButtonBig(text: 'Register', onPressed: (){

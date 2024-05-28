@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import 'package:repo/models/appointment_customized.dart';
+import 'package:repo/models/appointment.dart';
 import 'package:repo/services/calendar_data_service.dart';
 import 'package:repo/views/Authentification/login_screen.dart';
 import 'package:speech_to_text/speech_to_text.dart' ;

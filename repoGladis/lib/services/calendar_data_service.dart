@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/appointment_customized.dart';
+import '../models/appointment.dart';
 
 
 class CalendarDataService {

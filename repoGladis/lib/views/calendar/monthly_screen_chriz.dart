@@ -2,7 +2,7 @@ library event_calendar;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-part 'appointment.dart';
+part 'test_appointment.dart';
 
 class MonthlyScreen extends StatelessWidget {
   const MonthlyScreen({Key? key}) : super(key: key);

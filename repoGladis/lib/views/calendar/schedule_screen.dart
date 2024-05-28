@@ -3,22 +3,24 @@ import 'package:repo/views/calendar/widgets/appointments_form.dart';
 import 'package:repo/views/calendar/widgets/voiceInputWidget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:repo/models/appointment_customized.dart' as apt;
+import 'package:repo/models/appointment.dart' as apt;
 
 import '../../services/speech_recognition_service.dart';
 import '../../services/calendar_data_service.dart';
+import '../widgets/app_bar.dart';
 
-class MonthlyScreen extends StatelessWidget
+class ScheduleScreen extends StatelessWidget
 {
   final speechRecognitionService = SpeechRecognitionService();
   final dataService = CalendarDataService();
 
-  MonthlyScreen({Key? key,}) : super(key: key);
+  ScheduleScreen({Key? key,}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: CalendarScreen(speechRecognitionService:speechRecognitionService ,dataService:dataService),
     );
   }
@@ -59,9 +61,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
         }
       },
       child: Scaffold(
+        appBar: const MyAppBar(),
         body: SafeArea(
           child: SfCalendar(
-            view: CalendarView.month,
+            view: CalendarView.schedule,
             selectionDecoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(color: Colors.lightBlue, width: 2),
@@ -71,11 +74,24 @@ class _CalendarScreenState extends State<CalendarScreen> {
             todayHighlightColor: Colors.lightBlue,
             showTodayButton: true,
             showDatePickerButton: true,
-            monthViewSettings: const MonthViewSettings(
-              agendaStyle: AgendaStyle(),
-              showTrailingAndLeadingDates: false,
-              showAgenda: true,
-              agendaViewHeight: 400,
+            blackoutDates: const [],
+            //dragAndDropSettings: ,
+            viewHeaderStyle: const ViewHeaderStyle(backgroundColor: Colors.white),
+            backgroundColor: Colors.white,
+            scheduleViewSettings:const  ScheduleViewSettings(
+                hideEmptyScheduleWeek: true,
+
+                weekHeaderSettings: WeekHeaderSettings(
+                    startDateFormat: 'dd MMM ',
+                    endDateFormat: 'dd MMM, yy',
+                    height: 50,
+                    textAlign: TextAlign.center,
+                    backgroundColor: Colors.blue,
+                    weekTextStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                    ))
             ),
             dataSource: apt.AppointmentDataSource(_appointments),
             onTap: (details) {
@@ -90,32 +106,32 @@ class _CalendarScreenState extends State<CalendarScreen> {
         floatingActionButton: Row(
           children: [
             SizedBox(width: size.width * 0.15),
-           VoiceInputWidget(
-             size: 60,
-    onTap: () {
-    if (widget.speechRecognitionService.isListening)
-    {
-    widget.speechRecognitionService.stopListening();
-    _appointments=widget.dataService.getAppointments();
-    }
-    else
-    {
-    widget.speechRecognitionService.startListening((text)
-    {
-    setState(()
-    {
-    _recognizedText = text;
+            VoiceInputWidget(
+              size: 60,
+              onTap: () {
+                if (widget.speechRecognitionService.isListening)
+                {
+                  widget.speechRecognitionService.stopListening();
+                  _appointments=widget.dataService.getAppointments();
+                }
+                else
+                {
+                  widget.speechRecognitionService.startListening((text)
+                  {
+                    setState(()
+                    {
+                      _recognizedText = text;
 
-    }
-    );
+                    }
+                    );
 
-    },);}
-    },
-        ),
+                  },);}
+              },
+            ),
             // Expanded( // Wrap the SpeedDial widget with Expanded
             //   child: SizedBox(), // Replace this with your SpeedDial widget
             // ),
-            SizedBox(width: size.width * 0.60),
+            SizedBox(width: size.width * 0.50),
             SpeedDial(
               animatedIcon: AnimatedIcons.add_event,
               animatedIconTheme: const IconThemeData(color: Colors.white),

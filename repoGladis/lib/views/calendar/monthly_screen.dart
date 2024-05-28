@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:repo/views/calendar/widgets/voiceInputWidget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../models/appointment_customized.dart' as apt;
+import '../../models/appointment.dart' as apt;
 import '../../services/calendar_data_service.dart';
 import '../../services/speech_recognition_service.dart';
 import '../widgets/app_bar.dart';
@@ -15,6 +15,7 @@ class MonthlyScreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home:  CalendarScreen(speechRecognitionService:speechRecognitionService ,dataService:dataService),
     );
   }
@@ -57,7 +58,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
       appBar: const MyAppBar(),
       body: SafeArea(
         child: SfCalendar(
-          view: CalendarView.schedule,
+          view: CalendarView.month,
+
+          monthViewSettings: const MonthViewSettings(
+            agendaStyle: AgendaStyle(),
+            showTrailingAndLeadingDates: false,
+            showAgenda: true,
+            agendaViewHeight: 400,
+          ),
+
           dataSource: apt.AppointmentDataSource(_appointments),
           onTap: (details)
           {
@@ -98,7 +107,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           // Expanded( // Wrap the SpeedDial widget with Expanded
           //   child: SizedBox(), // Replace this with your SpeedDial widget
           // ),
-          SizedBox(width: size.width * 0.60),
+          SizedBox(width: size.width * 0.50),
           SpeedDial(
             animatedIcon: AnimatedIcons.add_event,
             animatedIconTheme: const IconThemeData(color: Colors.white),

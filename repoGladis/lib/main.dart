@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repo/services/speech_recognition_service.dart';
-import 'package:repo/views/calendar/monthly_screen_ami.dart';
+import 'package:repo/views/calendar/weekly_screen.dart';
 import 'package:repo/views/onboarding/intro_screen.dart';
 
 

@@ -1,6 +1,6 @@
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:repo/models/appointment_customized.dart' as apt;
+import 'package:repo/models/appointment.dart' as apt;
 
 
 
