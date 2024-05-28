@@ -123,15 +123,21 @@
     },
     {
       "name": "flutter_tts",
-      "rootUri": "file:///C:/Users/aouedraogo/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_tts-3.8.5",
+      "rootUri": "file:///C:/Users/aouedraogo/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_tts-4.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.15"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/flutter_windows_3.19.5-stable/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///C:/Users/aouedraogo/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "get",
@@ -464,7 +470,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-05-28T16:05:50.677775Z",
+  "generated": "2024-05-28T17:25:31.943450Z",
   "generator": "pub",
   "generatorVersion": "3.3.3"
 }

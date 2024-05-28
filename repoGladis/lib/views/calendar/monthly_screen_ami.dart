@@ -77,7 +77,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               showAgenda: true,
               agendaViewHeight: 400,
             ),
-            dataSource: AppointmentDataSource(_appointments),
+            dataSource: apt.AppointmentDataSource(_appointments),
             onTap: (details) {
               if (details is CalendarTapDetails && details.targetElement == CalendarElement.header) {
                 // _showAppointmentForm(context, null);

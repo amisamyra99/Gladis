@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class GetApiServices {
-  final String _baseUrl = 'https://8a9c-212-201-43-42.ngrok-free.app'; // Use localhost
+  final String _baseUrl = 'https://418e-212-201-43-42.ngrok-free.app'; // Use localhost
 
   Future<Map<String, dynamic>?> getIntentFromText(String text) async {
     try {

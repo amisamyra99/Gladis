@@ -148,24 +148,3 @@ class _AppointmentFormState extends State<AppointmentForm> {
 
 
 
-class AppointmentDataSource extends CalendarDataSource {
-
-  final List<apt.Appointment> appointments;
-
-  AppointmentDataSource(this.appointments);
-
-  @override
-  DateTime getStartTime(int index) {
-    return appointments[index].startTime ?? DateTime.now();
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return appointments[index].endTime ?? DateTime.now().add(const Duration(hours: 1));
-  }
-
-  @override
-  String getSubject(int index) {
-    return appointments[index].title;
-  }
-}

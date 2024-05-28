@@ -1,9 +1,12 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:repo/views/Authentification/widget/custom_button.dart';
 import 'package:repo/views/Authentification/widget/custom_scaffold.dart';
 import 'package:repo/views/Authentification/widget/custom_textfield.dart';
+
+import 'login_screen.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -44,7 +47,9 @@ class _RegistrationState extends State<Registration> {
               CustomTextField(controller: _passController, hintText: 'password',prefixIcon: Icon(Icons.password),),
               const SizedBox(height: 10,),
 
-              CustomButtonBig(text: 'Register', onPressed: (){},borderRadius: 50,color: Colors.blue,textColor: Colors.white,)
+              CustomButtonBig(text: 'Register', onPressed: (){
+                Get.to(Login());
+              },borderRadius: 50,color: Colors.blue,textColor: Colors.white,)
 
             ],
           ),
